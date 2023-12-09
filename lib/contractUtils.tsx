@@ -1,4 +1,4 @@
-export const contractAddress = "0x5E0D8De14F937f66E096a984391068962a470B30";
+export const contractAddress = "0xB0E9A1287E5C478537f4dBC90a8333bEE02DAab4";
 export const abi = [
   {
     inputs: [
@@ -36,9 +36,9 @@ export const abi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_userAddress",
-        type: "address",
+        internalType: "string",
+        name: "_email",
+        type: "string",
       },
       {
         internalType: "string",
@@ -59,6 +59,11 @@ export const abi = [
   {
     inputs: [],
     name: "DeCert__AlreadyExists",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "DeCert__OnlyIssuerRequired",
     type: "error",
   },
   {

@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 
 const formSchema = z.object({
   userName: z.string().min(1, { message: "User Email is required" }),
-  uploadedFile: z.string(),
+  uploadedFile: z.string().min(1, { message: "File is required" }),
 });
 function Uploader() {
   const form = useForm<z.infer<typeof formSchema>>({
