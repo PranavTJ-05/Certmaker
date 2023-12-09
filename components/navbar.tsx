@@ -1,6 +1,8 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 // import { useWindowScroll } from "react-use";
 import { useAccount, useDisconnect } from "wagmi";
@@ -10,6 +12,7 @@ const Navbar = () => {
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
   const [isMounted, setIsMounted] = React.useState(false);
+  const pathname = usePathname();
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -26,15 +29,28 @@ const Navbar = () => {
         <Link href="/user">
           <button>User</button>
         </Link> */}
-        <ul className="hidden md:flex gap-4 p-2">
-          <li>Home</li>
+        <ul className="hidden md:flex text-lg gap-4 p-2">
           {address && (
-            <Link href={`/user/${address}`}>
+            <Link
+              className={cn(
+                pathname.includes("user")
+                  ? "font-semibold"
+                  : "font-normal opacity-70"
+              )}
+              href={`/user/${address}`}
+            >
               <button>User</button>
             </Link>
           )}
           {address && (
-            <Link href="/issuer">
+            <Link
+              href="/issuer"
+              className={cn(
+                pathname.includes("issuer")
+                  ? "font-semibold"
+                  : "font-normal opacity-70"
+              )}
+            >
               <button>Issuer</button>
             </Link>
           )}

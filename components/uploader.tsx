@@ -74,7 +74,6 @@ function Uploader() {
           className="flex  flex-1 pt-12 h-full flex-col gap-10"
           onSubmit={form.handleSubmit((data) => console.log(data))}
         >
-          <h1 className="text-3xl">Sign Up Here</h1>
           <FormField
             control={form.control}
             name="userName"
