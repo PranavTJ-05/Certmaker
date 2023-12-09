@@ -139,7 +139,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                   [...Array(certificateData?.length)].map((url, index) => (
                     <div key={index} className="border p-6 rounded-sm mx-auto">
                       <Image
-                        src={certificateData[index]}
+                        src={url as string}
                         alt="certificate"
                         width={500}
                         height={500}
