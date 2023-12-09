@@ -67,7 +67,9 @@ const Issuer = () => {
   }, [data, isLoading]);
 
   useEffect(() => {
-    window.location.reload();
+    if (isSuccess) {
+      window.location.reload();
+    }
   }, [isSuccess]);
 
   return (

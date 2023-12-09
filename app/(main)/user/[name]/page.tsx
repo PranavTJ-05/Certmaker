@@ -85,8 +85,8 @@ const Page = ({ params }: { params: { name: string } }) => {
       toast({
         title: "Successfully added details",
       });
+      window.location.reload();
     }
-    window.location.reload();
   }, [isSuccess]);
 
   return (
