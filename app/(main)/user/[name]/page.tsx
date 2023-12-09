@@ -1,7 +1,7 @@
 import React from "react";
 
-const Page = () => {
-  return <div>This is a user name</div>;
+const Page = ({ params }: { params: { name: string } }) => {
+  return <div>{params.name}</div>;
 };
 
 export default Page;

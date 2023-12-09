@@ -16,9 +16,11 @@ const Navbar = () => {
     return null;
   }
   return (
-    <div className="flex justify-between items-center">
-      <h1>DECERT</h1>
-      <ul className="flex gap-4">
+    <div className="flex justify-between items-center p-2">
+      <Link href="/">
+        <h1 className="text-2xl cursor-pointer">Decert.</h1>
+      </Link>
+      <ul className="hidden lg:flex gap-4">
         <li>Home</li>
         <Link href="/user">
           <button>User</button>
@@ -29,6 +31,7 @@ const Navbar = () => {
       </ul>
       {!address ? (
         <button
+          className="text-lg py-2 px-6 rounded-full bg-blue-600 text-white"
           onClick={() => {
             open();
           }}
@@ -37,6 +40,7 @@ const Navbar = () => {
         </button>
       ) : (
         <button
+          className="text-lg py-2 px-6 rounded-full bg-blue-600 text-white"
           onClick={() => {
             disconnect();
           }}
