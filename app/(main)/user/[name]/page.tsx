@@ -116,7 +116,7 @@ const Page = ({ params }: { params: { name: string } }) => {
               onClick={(e) => {
                 e.preventDefault();
                 navigator.clipboard.writeText(
-                  `${window.origin}/user/${params.name}`
+                  `${window.origin}/user-certificate/${params.name}`
                 );
                 toast({
                   title: "Successfully copied to clipboard",
