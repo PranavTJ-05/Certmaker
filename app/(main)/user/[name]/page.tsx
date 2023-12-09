@@ -86,6 +86,7 @@ const Page = ({ params }: { params: { name: string } }) => {
         title: "Successfully added details",
       });
     }
+    window.location.reload();
   }, [isSuccess]);
 
   return (

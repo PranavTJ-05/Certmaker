@@ -66,6 +66,10 @@ const Issuer = () => {
     router.refresh();
   }, [data, isLoading]);
 
+  useEffect(() => {
+    window.location.reload();
+  }, [isSuccess]);
+
   return (
     <div className="flex-1 flex items-start">
       {
