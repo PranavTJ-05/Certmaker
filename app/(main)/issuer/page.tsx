@@ -12,12 +12,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import AadharUploader from "@/components/aadhar-uploader";
+import { useAadharStatus } from "@/store/use-aadhar-status";
 
 const formSchema = z.object({
   name: z.string(),
   email: z.string(),
 });
 const Issuer = () => {
+  const { aad } = useAadharStatus();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
