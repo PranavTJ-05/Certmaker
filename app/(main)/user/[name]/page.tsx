@@ -1,10 +1,20 @@
 "use client";
 import { toast } from "@/components/ui/use-toast";
+import { abi, contractAddress } from "@/lib/contractUtils";
 import { Copy, CopyIcon, CopyPlus, Forward, Share } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import { useAccount, useContractRead } from "wagmi";
 
 const Page = ({ params }: { params: { name: string } }) => {
+  const { address } = useAccount();
+  const { data, isError, isLoading } = useContractRead({
+    address: contractAddress,
+    abi: abi,
+    functionName: "fetchDetail",
+    args: [address],
+  });
+
   return (
     <div className="relative flex flex-col gap-4">
       <button

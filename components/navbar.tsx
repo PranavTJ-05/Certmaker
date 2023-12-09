@@ -28,12 +28,16 @@ const Navbar = () => {
         </Link> */}
         <ul className="hidden md:flex gap-4 p-2">
           <li>Home</li>
-          <Link href="/user">
-            <button>User</button>
-          </Link>
-          <Link href="/issuer">
-            <button>Issuer</button>
-          </Link>
+          {address && (
+            <Link href={`/user/${address}`}>
+              <button>User</button>
+            </Link>
+          )}
+          {address && (
+            <Link href="/issuer">
+              <button>Issuer</button>
+            </Link>
+          )}
         </ul>
         {!address ? (
           <button

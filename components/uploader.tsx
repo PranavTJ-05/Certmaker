@@ -1,13 +1,27 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import lighthouse from "@lighthouse-web3/sdk";
 import { LogInWithAnonAadhaar, useAnonAadhaar } from "anon-aadhaar-react";
+import { Input } from "./ui/input";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 
+const formSchema = z.object({
+  userName: z.string().min(1, { message: "User Email is required" }),
+  uploadedFile: z.string(),
+});
 function Uploader() {
-  const [anonAadhaar] = useAnonAadhaar();
-  useEffect(() => {
-    console.log("Anon Aadhaar status: ", anonAadhaar.status);
-  }, [anonAadhaar]);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      userName: "",
+      uploadedFile: "",
+    },
+  });
+  const [user, setUser] = useState("");
+  // const [uploadedFile, setUploadedFile] = useState("");
   const progressCallback = (progressData: number) => {
     let percentageDone: number =
       //@ts-ignore
@@ -45,20 +59,54 @@ function Uploader() {
       console.log(
         "Visit at https://gateway.lighthouse.storage/ipfs/" + output.data.Hash
       );
+
+      form.setValue(
+        "uploadedFile",
+        `https://gateway.lighthouse.storage/ipfs/${output.data.Hash}`
+      );
     }
   };
 
   return (
-    <div className="App">
-      <input
-        onChange={(e) => {
-          if (e.target.files) {
-            uploadFile(e.target.files!);
-          }
-        }}
-        type="file"
-      />
-      <LogInWithAnonAadhaar />
+    <div className="w-full flex flex-col gap-4">
+      <Form {...form}>
+        <form
+          className="flex  flex-1 pt-12 h-full flex-col gap-10"
+          onSubmit={form.handleSubmit((data) => console.log(data))}
+        >
+          <h1 className="text-3xl">Sign Up Here</h1>
+          <FormField
+            control={form.control}
+            name="userName"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder="Enter the user email to share him the certificate"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Input
+            type="file"
+            onChange={(e) => {
+              if (e.target.files) {
+                uploadFile(e.target.files!);
+              }
+            }}
+          />
+
+          <button
+            className="p-1 text-base bg-blue-500 text-white rounded-md"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      </Form>
     </div>
   );
 }
