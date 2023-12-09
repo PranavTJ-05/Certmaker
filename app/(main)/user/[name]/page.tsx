@@ -136,7 +136,7 @@ const Page = ({ params }: { params: { name: string } }) => {
 
               {
                 //@ts-ignore
-                userCertificates && !userCertificates.length > 0 ? (
+                collectible && !collectible.length > 0 ? (
                   <p>Sorry no certificates found</p>
                 ) : (
                   //@ts-ignore
