@@ -7,26 +7,32 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Progress } from "./ui/progress";
+import { useContractWrite } from "wagmi";
+import { abi, contractAddress } from "@/lib/contractUtils";
+import { Loader2 } from "lucide-react";
+import { toast } from "./ui/use-toast";
 
 const formSchema = z.object({
-  userName: z.string().min(1, { message: "User Email is required" }),
+  email: z.string().min(1, { message: "User Email is required" }),
   uploadedFile: z.string().min(1, { message: "File is required" }),
 });
 function Uploader() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userName: "",
+      email: "",
       uploadedFile: "",
     },
   });
   const [user, setUser] = useState("");
+  const [progress, setProgress] = useState(0);
   // const [uploadedFile, setUploadedFile] = useState("");
   const progressCallback = (progressData: number) => {
     let percentageDone: number =
       //@ts-ignore
       100 - (progressData?.total / progressData?.uploaded)?.toFixed(2);
-    console.log(percentageDone);
+    setProgress(percentageDone);
   };
 
   const uploadFile = async (file: any) => {
@@ -67,16 +73,38 @@ function Uploader() {
     }
   };
 
+  const {
+    data: writeData,
+    isLoading,
+    isSuccess,
+    write,
+  } = useContractWrite({
+    address: contractAddress,
+    abi: abi,
+    functionName: "addDetails",
+    args: [form.getValues("email"), form.getValues("uploadedFile")],
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: "Success",
+        description: "Certificate uploaded successfully",
+      });
+      form.reset();
+    }
+  }, [isSuccess]);
+
   return (
     <div className="w-full flex flex-col gap-4">
       <Form {...form}>
         <form
           className="flex  flex-1 pt-12 h-full flex-col gap-10"
-          onSubmit={form.handleSubmit((data) => console.log(data))}
+          onSubmit={form.handleSubmit((data) => write())}
         >
           <FormField
             control={form.control}
-            name="userName"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -97,12 +125,17 @@ function Uploader() {
               }
             }}
           />
+          <Progress value={progress} />
 
           <button
             className="p-1 text-base bg-blue-500 text-white rounded-md"
             type="submit"
           >
-            Submit
+            {!isLoading ? (
+              "Submit"
+            ) : (
+              <Loader2 className="animate-spin w-fit mx-auto" />
+            )}
           </button>
         </form>
       </Form>
