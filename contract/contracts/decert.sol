@@ -38,13 +38,17 @@ contract DeCert {
     }
 
     // Fetch Details of any particular address
-    function fetchDetail(address userAddress) external view returns (Detail memory) {
+    function fetchDetail(
+        address userAddress
+    ) external view returns (Detail memory) {
         if (!checkDetail(userAddress)) revert DeCert_Invalid_User();
         return s_details[userAddress];
     }
 
     // Fetch User's Data/Certifications
-    function fetchUserData(string memory _email) external view returns (string[] memory) {
+    function fetchUserData(
+        string memory _email
+    ) external view returns (string[] memory) {
         return s_userData[_email];
     }
 
@@ -62,11 +66,15 @@ contract DeCert {
     }
 
     function addUserData(string memory _email, string memory _data) external {
-        if(!s_details[msg.sender].isIssuer) revert DeCert__OnlyIssuerRequired();
+        if (!s_details[msg.sender].isIssuer)
+            revert DeCert__OnlyIssuerRequired();
         s_userData[_email].push(_data);
     }
 
-    function updateDetailsByUser(string memory _changeUserName, string memory _changeEmail) external {
+    function updateDetailsByUser(
+        string memory _changeUserName,
+        string memory _changeEmail
+    ) external {
         s_details[msg.sender].userName = _changeUserName;
         s_details[msg.sender].email = _changeEmail;
     }
