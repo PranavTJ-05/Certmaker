@@ -2,6 +2,7 @@
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import { useWindowScroll } from "react-use";
 import { useAccount, useDisconnect } from "wagmi";
 
 const Navbar = () => {
@@ -25,29 +26,35 @@ const Navbar = () => {
         <Link href="/user">
           <button>User</button>
         </Link>
-        <Link href="/issuer">
-          <button>Issuer</button>
-        </Link>
-      </ul>
-      {!address ? (
-        <button
-          className="text-lg py-2 px-6 rounded-full bg-blue-600 text-white"
-          onClick={() => {
-            open();
-          }}
-        >
-          Connect Wallet
-        </button>
-      ) : (
-        <button
-          className="text-lg py-2 px-6 rounded-full bg-blue-600 text-white"
-          onClick={() => {
-            disconnect();
-          }}
-        >
-          Logout
-        </button>
-      )}
+        <ul className="hidden md:flex gap-4 border-2 p-2">
+          <li>Home</li>
+          <Link href="/user">
+            <button>User</button>
+          </Link>
+          <Link href="/issuer">
+            <button>Issuer</button>
+          </Link>
+        </ul>
+        {!address ? (
+          <button
+            className="text-md py-2 px-6 rounded-full bg-blue-600 text-white"
+            onClick={() => {
+              open();
+            }}
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <button
+            className="text-md py-2 px-6 rounded-full bg-blue-600 text-white"
+            onClick={() => {
+              disconnect();
+            }}
+          >
+            Logout
+          </button>
+        )}
+      </div>
     </div>
   );
 };
