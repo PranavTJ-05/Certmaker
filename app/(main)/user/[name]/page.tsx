@@ -94,7 +94,16 @@ const Page = ({ params }: { params: { name: string } }) => {
       {data ? (
         //@ts-ignore
         data?.isIssuer ? (
-          <p className="text-3xl w-fit mx-auto">User is already an Issuer</p>
+          <div>
+            <p className="text-3xl w-fit mx-auto">User is already an Issuer</p>
+            <Image
+              src={"/smart-doodle.jpg"}
+              width={400}
+              height={400}
+              alt="logo"
+              className="w-[40rem] h-[40rem] object-contain"
+            />
+          </div>
         ) : (
           <div className="relative flex flex-col gap-4">
             <button
