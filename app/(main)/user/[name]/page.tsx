@@ -125,52 +125,54 @@ const Page = ({ params }: { params: { name: string } }) => {
           </div>
         )
       ) : (
-        <Form {...form}>
-          <form
-            className="flex  flex-1 pt-12 h-full flex-col gap-10"
-            onSubmit={form.handleSubmit(() => write())}
-          >
-            <h1 className="text-3xl">Sign Up Here</h1>
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input {...field} placeholder="Name" className="p-6" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input {...field} placeholder="Email" className="p-6" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex gap-4 items-center">
-              <p>Connect Aadhar here:</p>
-              <AadharUploader />
-            </div>
-            <button
-              className="p-2 bg-blue-500 text-white rounded-md"
-              type="submit"
+        <div className="max-w-3xl flex flex-col mx-auto w-full">
+          <Form {...form}>
+            <form
+              className="flex flex-1 pt-12 h-full flex-col gap-10"
+              onSubmit={form.handleSubmit(() => write())}
             >
-              {!isLoading ? (
-                "Submit"
-              ) : (
-                <Loader2 className="animate-spin w-fit mx-auto" />
-              )}
-            </button>
-          </form>
-        </Form>
+              <h1 className="text-3xl">Sign Up Here</h1>
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input {...field} placeholder="Name" className="p-6" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input {...field} placeholder="Email" className="p-6" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="flex gap-4 items-center">
+                <p>Connect Aadhar here:</p>
+                <AadharUploader />
+              </div>
+              <button
+                className="p-2 bg-blue-500 text-white rounded-md"
+                type="submit"
+              >
+                {!isLoading ? (
+                  "Submit"
+                ) : (
+                  <Loader2 className="animate-spin w-fit mx-auto" />
+                )}
+              </button>
+            </form>
+          </Form>
+        </div>
       )}
     </div>
   );
