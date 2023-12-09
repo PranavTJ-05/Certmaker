@@ -2,7 +2,7 @@
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { useWindowScroll } from "react-use";
+// import { useWindowScroll } from "react-use";
 import { useAccount, useDisconnect } from "wagmi";
 
 const Navbar = () => {
@@ -22,11 +22,11 @@ const Navbar = () => {
         <h1 className="text-2xl cursor-pointer">Decert.</h1>
       </Link>
       <ul className="hidden lg:flex gap-4">
-        <li>Home</li>
+        {/* <li>Home</li>
         <Link href="/user">
           <button>User</button>
-        </Link>
-        <ul className="hidden md:flex gap-4 border-2 p-2">
+        </Link> */}
+        <ul className="hidden md:flex gap-4 p-2">
           <li>Home</li>
           <Link href="/user">
             <button>User</button>
@@ -54,7 +54,7 @@ const Navbar = () => {
             Logout
           </button>
         )}
-      </div>
+      </ul>
     </div>
   );
 };
