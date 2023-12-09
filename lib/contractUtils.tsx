@@ -1,0 +1,238 @@
+export const contractAddress = "0x5E0D8De14F937f66E096a984391068962a470B30";
+export const abi = [
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_userAddress",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "_userName",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_email",
+        type: "string",
+      },
+      {
+        internalType: "bool",
+        name: "_prover",
+        type: "bool",
+      },
+      {
+        internalType: "bool",
+        name: "_ofIssuer",
+        type: "bool",
+      },
+    ],
+    name: "addDetails",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_userAddress",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "_data",
+        type: "string",
+      },
+    ],
+    name: "addUserData",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "DeCert_Invalid_User",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "DeCert__AlreadyExists",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_changeUserName",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_changeEmail",
+        type: "string",
+      },
+    ],
+    name: "updateDetailsByUser",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "_userAddress",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "_userName",
+        type: "string",
+      },
+    ],
+    name: "UserSignIn",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "userAddress",
+        type: "address",
+      },
+    ],
+    name: "checkDetail",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "userAddress",
+        type: "address",
+      },
+    ],
+    name: "fetchDetail",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "string",
+            name: "userName",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "email",
+            type: "string",
+          },
+          {
+            internalType: "bool",
+            name: "prover",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "isIssuer",
+            type: "bool",
+          },
+        ],
+        internalType: "struct DeCert.Detail",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_email",
+        type: "string",
+      },
+    ],
+    name: "fetchUserData",
+    outputs: [
+      {
+        internalType: "string[]",
+        name: "",
+        type: "string[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "s_details",
+    outputs: [
+      {
+        internalType: "string",
+        name: "userName",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "email",
+        type: "string",
+      },
+      {
+        internalType: "bool",
+        name: "prover",
+        type: "bool",
+      },
+      {
+        internalType: "bool",
+        name: "isIssuer",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "s_userData",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+];
