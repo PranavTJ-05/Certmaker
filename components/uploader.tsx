@@ -73,6 +73,8 @@ function Uploader() {
     }
   };
 
+  const { watch } = form;
+
   const {
     data: writeData,
     isLoading,
@@ -81,8 +83,8 @@ function Uploader() {
   } = useContractWrite({
     address: contractAddress,
     abi: abi,
-    functionName: "addDetails",
-    args: [form.getValues("email"), form.getValues("uploadedFile")],
+    functionName: "addUserData",
+    args: [watch("email"), watch("uploadedFile")],
   });
 
   useEffect(() => {
@@ -117,15 +119,30 @@ function Uploader() {
               </FormItem>
             )}
           />
-          <Input
-            type="file"
-            onChange={(e) => {
-              if (e.target.files) {
-                uploadFile(e.target.files!);
-              }
-            }}
+          <FormField
+            control={form.control}
+            name="uploadedFile"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <>
+                    <Input
+                      type="file"
+                      onChange={(e) => {
+                        if (e.target.files) {
+                          uploadFile(e.target.files!);
+                        }
+                      }}
+                    />
+                    {progress > 0 && (
+                      <Progress value={progress} className="h-2" />
+                    )}
+                  </>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-          <Progress value={progress} />
 
           <button
             className="p-1 text-base bg-blue-500 text-white rounded-md"

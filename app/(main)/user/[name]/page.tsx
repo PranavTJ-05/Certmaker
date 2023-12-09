@@ -25,6 +25,7 @@ import { useAccount, useContractRead, useContractWrite } from "wagmi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
+import { useAadharStatus } from "@/store/use-aadhar-status";
 
 const Page = ({ params }: { params: { name: string } }) => {
   const formSchema = z.object({
@@ -73,8 +74,22 @@ const Page = ({ params }: { params: { name: string } }) => {
     ],
   });
 
+  const { status } = useAadharStatus();
+
+  useEffect(() => {
+    console.log(certificateData);
+  }, []);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: "Successfully added details",
+      });
+    }
+  }, [isSuccess]);
+
   return (
-    <div className="flex items-center justify-center w-full flex-1">
+    <div className="flex items-start justify-center w-full flex-1">
       {data ? (
         //@ts-ignore
         data?.isIssuer ? (
@@ -94,8 +109,10 @@ const Page = ({ params }: { params: { name: string } }) => {
               }}
             >
               <div className="cursor-pointer gap-3 flex p-2 sticky top-20 bg-white ml-auto">
-                <p className="">Share your certificates url </p>
-
+                {
+                  //@ts-ignore
+                  <p className="">{data?.email!} your certificates url </p>
+                }
                 <CopyIcon />
               </div>
             </button>
@@ -104,7 +121,7 @@ const Page = ({ params }: { params: { name: string } }) => {
 
               {
                 //@ts-ignore
-                certificateData && certificateData.length > 0 ? (
+                certificateData && !certificateData.length > 0 ? (
                   <p>Sorry no certificates found</p>
                 ) : (
                   //@ts-ignore
@@ -129,7 +146,17 @@ const Page = ({ params }: { params: { name: string } }) => {
           <Form {...form}>
             <form
               className="flex flex-1 pt-12 h-full flex-col gap-10"
-              onSubmit={form.handleSubmit(() => write())}
+              onSubmit={form.handleSubmit(() => {
+                if (status) {
+                  write();
+                } else {
+                  toast({
+                    title: "Error",
+                    description: "Please connect your Aadhar",
+                    variant: "destructive",
+                  });
+                }
+              })}
             >
               <h1 className="text-3xl">Sign Up Here</h1>
               <FormField

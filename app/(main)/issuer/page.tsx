@@ -17,6 +17,8 @@ import { abi, contractAddress } from "@/lib/contractUtils";
 import Uploader from "@/components/uploader";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAadharStatus } from "@/store/use-aadhar-status";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -32,6 +34,7 @@ const Issuer = () => {
     args: [address],
   });
   const router = useRouter();
+  const { status } = useAadharStatus();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,6 +43,8 @@ const Issuer = () => {
       email: "",
     },
   });
+
+  const { watch } = form;
 
   const {
     data: writeData,
@@ -50,13 +55,7 @@ const Issuer = () => {
     address: contractAddress,
     abi: abi,
     functionName: "addDetails",
-    args: [
-      address,
-      form.getValues("name"),
-      form.getValues("email"),
-      true,
-      true,
-    ],
+    args: [address, watch("name"), watch("email"), true, true],
   });
 
   useEffect(() => {
@@ -68,7 +67,7 @@ const Issuer = () => {
   }, [data, isLoading]);
 
   return (
-    <div>
+    <div className="flex-1 flex items-start">
       {
         //@ts-ignore
 
@@ -89,7 +88,17 @@ const Issuer = () => {
             <Form {...form}>
               <form
                 className="flex  flex-1 pt-12 h-full flex-col gap-10"
-                onSubmit={form.handleSubmit(() => write())}
+                onSubmit={form.handleSubmit(() => {
+                  if (status) {
+                    write();
+                  } else {
+                    toast({
+                      title: "Error",
+                      description: "Please connect your Aadhar",
+                      variant: "destructive",
+                    });
+                  }
+                })}
               >
                 <h1 className="text-3xl">Sign Up Here</h1>
                 <FormField
