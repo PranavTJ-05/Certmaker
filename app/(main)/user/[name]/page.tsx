@@ -20,7 +20,7 @@ import {
 import Image from "next/image";
 
 import z from "zod";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAccount, useContractRead, useContractWrite } from "wagmi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,6 +33,7 @@ const Page = ({ params }: { params: { name: string } }) => {
     email: z.string().min(1, { message: "Email is required" }),
   });
   const { address } = useAccount();
+
   const { data, isError } = useContractRead({
     address: contractAddress,
     abi: abi,
@@ -78,7 +79,7 @@ const Page = ({ params }: { params: { name: string } }) => {
 
   useEffect(() => {
     console.log(certificateData);
-  }, []);
+  }, [certificateData]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -122,15 +123,14 @@ const Page = ({ params }: { params: { name: string } }) => {
 
               {
                 //@ts-ignore
-                certificateData && !certificateData.length > 0 ? (
+                userCertificates && !userCertificates.length > 0 ? (
                   <p>Sorry no certificates found</p>
                 ) : (
                   //@ts-ignore
                   [...Array(certificateData?.length)].map((url, index) => (
                     <div key={index} className="border p-6 rounded-sm mx-auto">
                       <Image
-                        key={index}
-                        src={url}
+                        src={certificateData[index]}
                         alt="certificate"
                         width={500}
                         height={500}
