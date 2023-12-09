@@ -34,6 +34,8 @@ const Page = ({ params }: { params: { name: string } }) => {
   });
   const { address } = useAccount();
 
+  const [collectible, setCollectible] = useState<string[]>([]);
+
   const { data, isError } = useContractRead({
     address: contractAddress,
     abi: abi,
@@ -79,6 +81,8 @@ const Page = ({ params }: { params: { name: string } }) => {
 
   useEffect(() => {
     console.log(certificateData);
+    //@ts-ignore
+    setCollectible(certificateData);
   }, [certificateData]);
 
   useEffect(() => {
@@ -139,7 +143,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                   [...Array(certificateData?.length)].map((url, index) => (
                     <div key={index} className="border p-6 rounded-sm mx-auto">
                       <Image
-                        src={url as string}
+                        src={collectible[index]}
                         alt="certificate"
                         width={500}
                         height={500}
