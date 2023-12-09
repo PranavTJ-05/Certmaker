@@ -24,11 +24,6 @@ const Navbar = () => {
       <Link href="/">
         <h1 className="text-2xl cursor-pointer">Decert.</h1>
       </Link>
-      <ul className="hidden lg:flex gap-4">
-        {/* <li>Home</li>
-        <Link href="/user">
-          <button>User</button>
-        </Link> */}
         <ul className="hidden md:flex text-lg gap-4 p-2">
           {address && (
             <Link
@@ -57,7 +52,7 @@ const Navbar = () => {
         </ul>
         {!address ? (
           <button
-            className="text-md py-2 px-6 rounded-full bg-blue-600 text-white"
+            className="text-md py-2.5 px-6 rounded-full bg-black text-[#ebebebea]"
             onClick={() => {
               open();
             }}
@@ -66,7 +61,7 @@ const Navbar = () => {
           </button>
         ) : (
           <button
-            className="text-md py-2 px-6 rounded-full bg-blue-600 text-white"
+            className="text-md py-2.5 px-6 rounded-full bg-black text-[#ebebebea]"
             onClick={() => {
               disconnect();
             }}
@@ -74,7 +69,7 @@ const Navbar = () => {
             Logout
           </button>
         )}
-      </ul>
+      </>
     </div>
   );
 };
