@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Web3Modal } from "@/context/walletConfig";
 import type { AppProps } from "next/app";
-import AadharProvider from "@/components/aadharProvider";
+import AadharProvider from "@/components/AadharProvider";
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID || "";
 
