@@ -21,8 +21,14 @@ const HomePage = () => {
         {/* Image here */}
         <div className="flex flex-col w-screen gap-3 ">
           <div className=" flex justify-center items-center h-[calc(100vh-100px)] ">
-            <div className="w-1/2 justify-center flex">
-              <Image src={"/as-1.jpg"} width={400} height={400} alt="logo" />
+            <div className="justify-center flex">
+              <Image
+                src={"/as-1.jpg"}
+                width={400}
+                height={400}
+                alt="logo"
+                className="w-[40rem] h-[40rem]"
+              />
             </div>
             <div className="w-1/2">
               <div className="w-11/12 flex flex-col gap-7">
@@ -36,7 +42,7 @@ const HomePage = () => {
                   Empowering Trust through transparency and Verifiable
                   Certifications
                 </p>
-                <Button variant="secondary" className="">
+                <Button variant="secondary" className="w-fit">
                   Get Started
                 </Button>
               </div>

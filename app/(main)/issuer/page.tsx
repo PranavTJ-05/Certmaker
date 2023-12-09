@@ -19,6 +19,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAadharStatus } from "@/store/use-aadhar-status";
 import { toast } from "@/components/ui/use-toast";
+import Image from "next/image";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -86,9 +87,18 @@ const Issuer = () => {
                 <Uploader />
               </div>
             ) : (
-              <p className="text-3xl w-fit mx-auto">
-                User already exits and cant be an Issuer
-              </p>
+              <div>
+                <p className="text-3xl w-fit mx-auto">
+                  User already exits and cant be an Issuer
+                </p>
+                <Image
+                  src={"/smart-doodle.jpg"}
+                  width={400}
+                  height={400}
+                  alt="logo"
+                  className="w-[40rem] h-[40rem] object-contain"
+                />
+              </div>
             )
           ) : (
             <Form {...form}>
