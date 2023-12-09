@@ -24,6 +24,7 @@ const Navbar = () => {
       <Link href="/">
         <h1 className="text-2xl cursor-pointer">Decert.</h1>
       </Link>
+      <div className="flex items-center gap-8">
         <ul className="hidden md:flex text-lg gap-4 p-2">
           {address && (
             <Link
@@ -69,7 +70,7 @@ const Navbar = () => {
             Logout
           </button>
         )}
-      </>
+      </div>
     </div>
   );
 };
