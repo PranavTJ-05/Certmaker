@@ -59,14 +59,9 @@ const Page = ({ params }: { params: { address: string } }) => {
           ) : (
             collectible.length > 0 &&
             //@ts-ignore
-            [...Array(certificateData?.length)].map((url, index) => (
+            certificateData.map((url, index) => (
               <div key={index} className="border p-6 rounded-sm mx-auto">
-                <Image
-                  src={collectible[index]}
-                  alt="certificate"
-                  width={500}
-                  height={500}
-                />
+                <Image src={url} alt="certificate" width={500} height={500} />
               </div>
             ))
           )
