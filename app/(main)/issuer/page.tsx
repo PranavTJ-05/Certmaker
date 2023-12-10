@@ -112,7 +112,8 @@ const Issuer = () => {
             <Form {...form}>
               <form
                 className="flex  flex-1 pt-12 h-full flex-col gap-10"
-                onSubmit={form.handleSubmit(() => {
+                onSubmit={(e) => {
+                  e.preventDefault();
                   if (status) {
                     write();
                   } else {
@@ -122,7 +123,7 @@ const Issuer = () => {
                       variant: "destructive",
                     });
                   }
-                })}
+                }}
               >
                 <h1 className="text-3xl">Sign Up Here</h1>
                 <FormField
