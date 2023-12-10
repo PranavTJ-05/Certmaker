@@ -20,14 +20,14 @@ const HomePage = () => {
         </Link> */}
         {/* Image here */}
         <div className="flex flex-col w-screen gap-3 ">
-          <div className=" flex justify-center items-center h-[calc(100vh-100px)] ">
-            <div className="justify-center flex">
+          <div className=" flex justify-around items-center h-[calc(100vh-100px)] ">
+            <div className="justify-center flex w-1/2">
               <Image
                 src={"/as-1.jpg"}
                 width={400}
                 height={400}
                 alt="logo"
-                className="w-[40rem] h-[40rem]"
+                className="w-[30rem] h-[30rem] mb-4"
               />
             </div>
             <div className="w-1/2">
@@ -42,7 +42,10 @@ const HomePage = () => {
                   Empowering Trust through transparency and Verifiable
                   Certifications
                 </p>
-                <Button variant="secondary" className="w-fit">
+                <Button
+                  variant="secondary"
+                  className="w-fit bg-[#232323] text-[#fff] hover:bg-[#fff] hover:text-[#232323] hover:border-[#232323] hover:border"
+                >
                   Get Started
                 </Button>
               </div>
@@ -53,8 +56,8 @@ const HomePage = () => {
             <h2 className={`${space_grotesk.className} text-4xl font-bold`}>
               Unlock the possibilities
             </h2>
-            <div className="z-0 lg:w-80 lg:absolute lg:h-36 lg:border top-0 lg:rotate-45 lg:rounded-[100%] lg:border-gray-500 lg:p-10"></div>
-            <div className="z-0 lg:w-80 lg:absolute lg:h-36 lg:border top-0 lg:rotate-90 lg:rounded-[100%] lg:border-gray-500 lg:p-10"></div>
+            <div className="z-0 lg:w-40 lg:absolute lg:h-20 lg:border top-0 lg:rotate-45 lg:rounded-[100%] lg:border-gray-500 lg:p-8"></div>
+            <div className="z-0 lg:w-40 lg:absolute lg:h-20 lg:border top-0 lg:rotate-90 lg:rounded-[100%] lg:border-gray-500 lg:p-8"></div>
             <div
               className={`flex justify-center items-center h-full ${poppins.className}`}
             >
@@ -91,10 +94,12 @@ const HomePage = () => {
 
                   <p className="text-md">User Validation Control</p>
                 </div>
+                <div className="z-0 lg:w-40 lg:absolute lg:h-20 lg:border right-0 bottom-0 lg:rotate-45 lg:rounded-[100%] lg:border-gray-500 lg:p-8"></div>
+                <div className="z-0 lg:w-40 lg:absolute lg:h-20 lg:border right-0 bottom-0 lg:rotate-90 lg:rounded-[100%] lg:border-gray-500 lg:p-8"></div>
               </div>
             </div>
           </div>
-          <div className="w-8/12 mx-auto flex py-16 bg-[#fffff]">
+          <div className="w-8/12 mx-auto flex py-16 bg-[#fffff] pt-28">
             <div className="w-11/12">
               <h2 className={`text-3xl bold ${space_grotesk.className}`}>
                 Why Choose Decert?
@@ -109,7 +114,12 @@ const HomePage = () => {
                 secure storage makes certifications both secure and effortlessly
                 accessible.
               </p>
-              <Button variant="secondary">Get Started</Button>
+              <Button
+                variant="secondary"
+                className="w-fit bg-[#232323] text-[#fff] hover:bg-[#fff] hover:text-[#232323] hover:border-[#232323] hover:border"
+              >
+                Get Started
+              </Button>
             </div>
             <Image src={"/question.png"} width={400} height={400} alt="logo" />
           </div>

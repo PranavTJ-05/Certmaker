@@ -6,6 +6,10 @@ import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 // import { useWindowScroll } from "react-use";
 import { useAccount, useDisconnect } from "wagmi";
+import { Space_Grotesk, Poppins } from "next/font/google";
+
+const space_grotesk = Space_Grotesk({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 const Navbar = () => {
   const { open } = useWeb3Modal();
@@ -22,10 +26,12 @@ const Navbar = () => {
   return (
     <div className="flex sticky top-0 z-[1000] bg-white justify-between items-center p-2">
       <Link href="/">
-        <h1 className="text-2xl cursor-pointer">Decert.</h1>
+        <h1 className={`text-2xl cursor-pointer ${space_grotesk.className}`}>
+          Decert.
+        </h1>
       </Link>
-      <div className="flex items-center gap-8">
-        <ul className="hidden md:flex text-lg gap-4 p-2">
+      <div className={`flex items-center gap-8 ${space_grotesk.className}`}>
+        <ul className="hidden md:flex text-lg gap-6 p-2">
           {address && (
             <Link
               className={cn(
@@ -35,7 +41,7 @@ const Navbar = () => {
               )}
               href={`/user/${address}`}
             >
-              <button>User</button>
+              <button>Profile</button>
             </Link>
           )}
           {address && (
@@ -47,7 +53,7 @@ const Navbar = () => {
                   : "font-normal opacity-70"
               )}
             >
-              <button>Issuer</button>
+              <button>Certifier</button>
             </Link>
           )}
         </ul>
