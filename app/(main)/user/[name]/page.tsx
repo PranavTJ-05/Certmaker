@@ -164,12 +164,6 @@ const Page = ({ params }: { params: { name: string } }) => {
                 e.preventDefault();
                 if (status) {
                   write();
-                } else {
-                  toast({
-                    title: "Error",
-                    description: "Please connect your Aadhar",
-                    variant: "destructive",
-                  });
                 }
               }}
             >
@@ -205,6 +199,15 @@ const Page = ({ params }: { params: { name: string } }) => {
               <button
                 className="p-2 bg-blue-500 text-white rounded-md"
                 type="submit"
+                onClick={() => {
+                  if (!status) {
+                    toast({
+                      title: "Error",
+                      description: "Please connect your Aadhar",
+                      variant: "destructive",
+                    });
+                  }
+                }}
               >
                 {!isLoading ? (
                   "Submit"
