@@ -20,6 +20,10 @@ import { useRouter } from "next/navigation";
 import { useAadharStatus } from "@/store/use-aadhar-status";
 import { toast } from "@/components/ui/use-toast";
 import Image from "next/image";
+import { Space_Grotesk, Poppins } from "next/font/google";
+
+const space_grotesk = Space_Grotesk({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -78,7 +82,9 @@ const Issuer = () => {
       {
         //@ts-ignore
 
-        <div className="max-w-3xl flex flex-col mx-auto w-full">
+        <div
+          className={`max-w-3xl flex flex-col py-10 mx-auto w-full ${space_grotesk.className} `}
+        >
           {data ? (
             //@ts-ignore
             data?.isIssuer ? (
@@ -88,7 +94,9 @@ const Issuer = () => {
               </div>
             ) : (
               <div>
-                <p className="text-3xl w-fit mx-auto">
+                <p
+                  className={`text-3xl w-fit mx-auto ${space_grotesk.className}`}
+                >
                   User already exits and cant be an Issuer
                 </p>
                 <Image
@@ -96,7 +104,7 @@ const Issuer = () => {
                   width={400}
                   height={400}
                   alt="logo"
-                  className="w-[40rem] h-[40rem] object-contain"
+                  className="w-[35rem] h-[35rem] mx-auto object-contain"
                 />
               </div>
             )
@@ -141,7 +149,7 @@ const Issuer = () => {
                   <AadharUploader />
                 </div>
                 <button
-                  className="p-2 bg-blue-500 text-white rounded-md"
+                  className="p-2 rounded-md  bg-black text-[#ebebebea]"
                   type="submit"
                   onClick={() => {
                     if (!status) {

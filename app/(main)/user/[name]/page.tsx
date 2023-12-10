@@ -26,6 +26,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { useAadharStatus } from "@/store/use-aadhar-status";
+import { Space_Grotesk, Poppins } from "next/font/google";
+
+const space_grotesk = Space_Grotesk({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 const Page = ({ params }: { params: { name: string } }) => {
   const formSchema = z.object({
@@ -95,12 +99,18 @@ const Page = ({ params }: { params: { name: string } }) => {
   }, [isSuccess]);
 
   return (
-    <div className="flex items-start justify-center w-full flex-1">
+    <div
+      className={`flex items-start justify-center ${space_grotesk.className} w-full flex-1 py-6`}
+    >
       {data ? (
         //@ts-ignore
         data?.isIssuer ? (
           <div>
-            <p className="text-3xl w-fit mx-auto">User is already an Issuer</p>
+            <p
+              className={`text-2xl w-fit pt-10 mx-auto ${space_grotesk.className}`}
+            >
+              User is already an Issuer
+            </p>
             <Image
               src={"/smart-doodle.jpg"}
               width={400}
@@ -123,7 +133,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                 });
               }}
             >
-              <div className="cursor-pointer gap-3 flex p-2 sticky top-20 bg-white ml-auto">
+              <div className="cursor-pointer gap-6 flex p-2.5 sticky top-20 bg-white ml-auto">
                 {
                   //@ts-ignore
                   <p className="">{data?.email!} your certificates url </p>
@@ -141,14 +151,41 @@ const Page = ({ params }: { params: { name: string } }) => {
                 ) : (
                   //@ts-ignore
                   [...Array(certificateData?.length)].map((url, index) => (
-                    <div key={index} className="border p-6 rounded-sm mx-auto">
-                      <Image
-                        src={collectible[index]}
-                        alt="certificate"
-                        width={500}
-                        height={500}
-                      />
-                    </div>
+                    <>
+                      <div
+                        key={index}
+                        className="border p-4 rounded-sm mx-auto"
+                      >
+                        <Image
+                          src={collectible[index]}
+                          alt="certificate"
+                          width={400}
+                          height={400}
+                        />
+                      </div>
+                      {/* <div
+                        key={index}
+                        className="border p-4 rounded-sm mx-auto"
+                      >
+                        <Image
+                          src={collectible[index]}
+                          alt="certificate"
+                          width={400}
+                          height={400}
+                        />
+                      </div>
+                      <div
+                        key={index}
+                        className="border p-4 rounded-sm mx-auto"
+                      >
+                        <Image
+                          src={collectible[index]}
+                          alt="certificate"
+                          width={400}
+                          height={400}
+                        />
+                      </div> */}
+                    </>
                   ))
                 )
               }
@@ -197,7 +234,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                 <AadharUploader />
               </div>
               <button
-                className="p-2 bg-blue-500 text-white rounded-md"
+                className="p-2 bg-[#232323] text-white  w-full rounded-md"
                 type="submit"
                 onClick={() => {
                   if (!status) {
