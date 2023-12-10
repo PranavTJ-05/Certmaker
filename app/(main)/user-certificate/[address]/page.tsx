@@ -18,9 +18,7 @@ import {
   Share,
 } from "lucide-react";
 import Image from "next/image";
-
-import z from "zod";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useContractRead } from "wagmi";
 
 const Page = ({ params }: { params: { address: string } }) => {
@@ -42,28 +40,26 @@ const Page = ({ params }: { params: { address: string } }) => {
   });
 
   useEffect(() => {
-    console.log(certificateData);
-    //@ts-ignore
-    setCollectible(certificateData);
+    if (certificateData) {
+      console.log(certificateData);
+      //@ts-ignore
+      setCollectible(certificateData);
+    }
   }, [certificateData]);
 
   return (
     <div className="flex items-start justify-center w-full flex-1">
       <div className="max-w-7xl w-full mx-auto grid grid-cols-2 gap-4 p-3 items-center justify-center">
-        {/* {params.name} */}
-
         {
           //@ts-ignore
-          collectible && !collectible.length > 0 ? (
-            <p>Sorry no certificates found</p>
-          ) : (
-            collectible.length > 0 &&
-            //@ts-ignore
-            certificateData.map((url, index) => (
+          collectible && collectible.length > 0 ? (
+            collectible.map((url, index) => (
               <div key={index} className="border p-6 rounded-sm mx-auto">
                 <Image src={url} alt="certificate" width={500} height={500} />
               </div>
             ))
+          ) : (
+            <p>Sorry no certificates found</p>
           )
         }
       </div>
