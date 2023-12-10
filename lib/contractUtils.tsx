@@ -53,17 +53,17 @@ export const abi = [
   },
   {
     inputs: [],
-    name: "DeCert_Invalid_User",
+    name: "Certmaker_Invalid_User",
     type: "error",
   },
   {
     inputs: [],
-    name: "DeCert__AlreadyExists",
+    name: "Certmaker__AlreadyExists",
     type: "error",
   },
   {
     inputs: [],
-    name: "DeCert__OnlyIssuerRequired",
+    name: "Certmaker__OnlyIssuerRequired",
     type: "error",
   },
   {
@@ -155,7 +155,7 @@ export const abi = [
             type: "bool",
           },
         ],
-        internalType: "struct DeCert.Detail",
+        internalType: "struct Certmaker.Detail",
         name: "",
         type: "tuple",
       },

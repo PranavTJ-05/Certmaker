@@ -12,7 +12,7 @@ const HomePage = () => {
     <div>
       {/* //Two sections with two cta */}
       <div className="flex flex-col overflow-hidden gap-4 justify-center items-center">
-        {/* <Link href="/user/vinay" className="p-4 border">
+        {/* <Link href="/user/PranavTJ" className="p-4 border">
           <button>User</button>
         </Link>
         <Link href="/issuer" className="p-4 border">
@@ -102,10 +102,10 @@ const HomePage = () => {
           <div className="w-8/12 mx-auto flex py-16 bg-[#fffff] pt-28">
             <div className="w-11/12">
               <h2 className={`text-3xl bold ${space_grotesk.className}`}>
-                Why Choose Decert?
+                Why Choose Certmaker?
               </h2>
               <p className={`text-base w-11/12 py-6 ${poppins.className}`}>
-                At Decert, transparency drives trust. With our user-centric
+                At Certmaker, transparency drives trust. With our user-centric
                 approach, certifications are stored securely using IPFS and
                 Filecoin via Lighthouse, ensuring permanent integrity and easy
                 access. Our intuitive interface simplifies verification,

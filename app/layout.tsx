@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 const appId = process.env.NEXT_PUBLIC_APP_ID || "";
 
 export const metadata: Metadata = {
-  title: "DeCert",
+  title: "Certmaker",
   description: "This is a marketplace to upload the models",
 };
 

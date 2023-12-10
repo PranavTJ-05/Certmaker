@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
-error DeCert__OnlyIssuerRequired();
-error DeCert__OnlyUser();
-error DeCert_Invalid_User();
-error DeCert__AlreadyExists();
+error Certmaker__OnlyIssuerRequired();
+error Certmaker__OnlyUser();
+error Certmaker_Invalid_User();
+error Certmaker__AlreadyExists();
 
-contract DeCert {
+contract Certmaker {
     struct Detail {
         string userName;
         string email;
@@ -41,7 +41,7 @@ contract DeCert {
     function fetchDetail(
         address userAddress
     ) external view returns (Detail memory) {
-        if (!checkDetail(userAddress)) revert DeCert_Invalid_User();
+        if (!checkDetail(userAddress)) revert Certmaker_Invalid_User();
         return s_details[userAddress];
     }
 
@@ -59,7 +59,7 @@ contract DeCert {
 
     modifier IsNotExisting(address userAddress) {
         if (bytes(s_details[userAddress].userName).length > 0) {
-            revert DeCert__AlreadyExists();
+            revert Certmaker__AlreadyExists();
         } else {
             _;
         }
@@ -67,7 +67,7 @@ contract DeCert {
 
     function addUserData(string memory _email, string memory _data) external {
         if (!s_details[msg.sender].isIssuer)
-            revert DeCert__OnlyIssuerRequired();
+            revert Certmaker__OnlyIssuerRequired();
         s_userData[_email].push(_data);
     }
 

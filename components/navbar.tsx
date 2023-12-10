@@ -27,7 +27,7 @@ const Navbar = () => {
     <div className="flex sticky top-0 z-[1000] bg-white justify-between items-center p-2">
       <Link href="/">
         <h1 className={`text-2xl cursor-pointer ${space_grotesk.className}`}>
-          Decert.
+          Certmaker.
         </h1>
       </Link>
       <div className={`flex items-center gap-8 ${space_grotesk.className}`}>
