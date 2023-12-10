@@ -57,6 +57,7 @@ const Page = ({ params }: { params: { address: string } }) => {
           collectible && !collectible.length > 0 ? (
             <p>Sorry no certificates found</p>
           ) : (
+            collectible.length > 0 &&
             //@ts-ignore
             [...Array(certificateData?.length)].map((url, index) => (
               <div key={index} className="border p-6 rounded-sm mx-auto">
